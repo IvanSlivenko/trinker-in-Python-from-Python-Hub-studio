@@ -1,0 +1,9 @@
+
+https://youtu.be/4m4AqZzha5E#------------Part 0
+https://youtu.be/jpKYafR01tU#------------Part 1
+
+
+https://github.com/PythonHubStudio/CPU-RAM-usage-monitor-bar/blob/master/CPU-RAM%20usage%20monitor%20bar.py
+
+
+pip install psutil
