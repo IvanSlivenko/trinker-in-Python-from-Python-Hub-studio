@@ -117,9 +117,12 @@ class Application(tk.Tk, Configure_widjets):
         self.destroy()
         sys.exit()
 
-if __name__ == '__main__':
-    root = Application()
-    root.mainloop()
+# if __name__ == '__main__':
+#     root = Application()
+#     root.mainloop()
+
+root = Application()
+root.mainloop()
 
 
 

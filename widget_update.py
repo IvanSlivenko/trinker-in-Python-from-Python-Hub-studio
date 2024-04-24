@@ -1,6 +1,6 @@
 """The module confsgure and updates the application events"""
 
-class Configure_widjets:
+class Configure_widgets:
 
     def configure_cpu_bar(self):
 
