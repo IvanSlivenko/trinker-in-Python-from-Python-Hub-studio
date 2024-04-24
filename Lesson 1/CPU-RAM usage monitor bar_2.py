@@ -40,7 +40,7 @@ class Application(tk.Tk, Configure_widgets):
         self.combo_win.current(1)
         self.combo_win.pack(side=tk.LEFT)
 
-        ttk.Button(self.bar2, text='move').pack(side=tk.LEFT)# ----- Створюємо кнопку
+        ttk.Button(self.bar2, text='move', command=self.configure_win).pack(side=tk.LEFT)# ----- Створюємо кнопку
         ttk.Button(self.bar2, text='>>>').pack(side=tk.LEFT)
 #----------------------------------------------------------------------------------------- Power
         self.bar = ttk.Labelframe(self, text='Power')  # ----- Створюємо область Power
@@ -48,6 +48,7 @@ class Application(tk.Tk, Configure_widgets):
 
         self.bind_class('Tk', '<Enter>', self.enter_mouse)# ------------------------ обробник подій
         self.bind_class('Tk', '<Leave>', self.leave_mouse)
+        self.combo_win.bind('<<ComboboxSelected>>', self.choise_combo)
 
     def make_bar_cpu_usage(self):
         ttk.Label(self.bar, text=f'physical cores : {self.cpu.cpu_count}, logical cores : {self.cpu.cpu_count_logical}',
@@ -68,6 +69,30 @@ class Application(tk.Tk, Configure_widgets):
         self.ram_bar = ttk.Progressbar(self.bar, length=100)
         self.ram_bar.pack(fill=tk.X)
 
+        # self.temp_lab = ttk.Label(self.bar, text='', anchor=tk.CENTER)
+        # self.temp_lab.pack(fill=tk.X)
+
+        # self.temp_bar = ttk.Progressbar(self.bar, length=100)
+        # self.temp_bar.pack(fill=tk.X)
+
+    def make_minimal_win(self):
+        self.lab_min = ttk.Label(self, text=f'cpu {self.cpu.cpu_one_return()} % / ram {round(self.cpu.ram_usage()[3]/self.cpu.ram_usage()[0]*100)} %', anchor=tk.S)
+        self.lab_min.pack(side=tk.LEFT)
+
+        self.bar_one = ttk.Progressbar(self, length=100)
+        self.bar_one.pack(side=tk.LEFT)
+
+
+        self.ram_bar = ttk.Progressbar(self, length=100)
+        self.ram_bar.pack(side=tk.LEFT)
+
+        ttk.Button(self, text='full', width=5).pack(side=tk.RIGHT)
+        ttk.Button(self, text='move', width=5).pack(side=tk.RIGHT)
+
+        self.update()
+        self.configure_minimal_win()
+
+
 
     def enter_mouse(self, event):
         if self.combo_win.current() == 0 or 1:
@@ -76,6 +101,19 @@ class Application(tk.Tk, Configure_widgets):
     def leave_mouse(self, event):
         if self.combo_win.current() == 0:
             self.geometry(f"{self.winfo_width()}x1")
+
+    def choise_combo(self, event):
+        #------------------------------------------------------ Відв'язуємо події
+        if self.combo_win.current() == 2:
+            self.enter_mouse('')
+            self.unbind_class('Tk', '<Enter>')
+            self.unbind_class('Tk', '<Leave>')
+            self.combo_win.unbind('<<ComboboxSelected>>')
+            self.after_cancel(self.wheel)
+            #-------------------------------------------------- Очищаємо вікно
+            self.clear_win()
+            self.update()
+            self.make_minimal_win()
 
     def app_exit(self): #-------------------------------- Закриваємо додаток
         self.destroy()

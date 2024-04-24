@@ -1,10 +1,11 @@
 
-https://youtu.be/4m4AqZzha5E#------------Part 0
-https://youtu.be/jpKYafR01tU#------------Part 1
+https://youtu.be/4m4AqZzha5E#------------Part 0(1)
+https://youtu.be/jpKYafR01tU#------------Part 1(2)
+https://youtu.be/W4MQheMOzjA#------------Part 2(3)
+https://youtu.be/nmgRzuSyXW0#------------Part 3(4)
+https://youtu.be/7m-hfh4D9ak#------------Part 4(5)
 
-https://youtu.be/nmgRzuSyXW0#------------Part 4
-
-19 : 10
+14 : 39
 
 svmem(
         total=6378106880,

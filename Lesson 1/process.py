@@ -7,14 +7,23 @@ class CpuBar():
         self.cpu_count_logical = pt.cpu_count()
 
     def cpu_percent_return(self):
-        return pt.cpu_percent(percpu=True)
-        # return pt.sensors_temperatures()
+        return pt.cpu_percent(percpu=True) #---------------------------- Детальне завантаження процесора
+
 # x =  CpuBar()
 #
 # for i in range(10):
 #     print(x.cpu_percent_return())
 #     sleep(1)
+
+    def cpu_one_return(self):
+        return pt.cpu_percent()#---------------------------------------- Сумарне завантаження процесора
+
     def ram_usage(self):
         return pt.virtual_memory()
 
-# print(CpuBar().run_usage())
+    # def temp_usage(self):
+    #     return pt.sensors_temperatures()
+
+
+
+# print(CpuBar().ram_usage())

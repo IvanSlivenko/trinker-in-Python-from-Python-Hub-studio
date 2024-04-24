@@ -18,5 +18,26 @@ class Configure_widgets:
 
         self.ram_bar.configure(value=r2[2])
 
+        # r3 = self.cpu.temp_usage()
+        # self.temp_lab.configure(text=f'Температура процесора : < > градусів')
+        # self.temp_bar.confsgure(value=r3)
 
-        self.whel = self.after(1000, self.configure_cpu_bar)
+
+
+
+        self.wheel = self.after(1000, self.configure_cpu_bar)
+
+    def configure_win(self):
+        if self.wm_overrideredirect():
+            self.overrideredirect(False)
+        else:
+            self.overrideredirect(True)
+        self.update()
+    def clear_win(self):
+        for i in self.winfo_children():
+            i.destroy()
+
+    def configure_minimal_win(self):
+        self.bar_one.configure(value=self.cpu.cpu_one_return())
+        self.ram_bar.configure(value=self.cpu.ram_usage()[2])
+        self.wheel = self.after(1000, self.configure_minimal_win)
